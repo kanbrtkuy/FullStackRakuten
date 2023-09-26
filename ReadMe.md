@@ -1,4 +1,5 @@
 Enviroment Setting
+```
 > pip install virtualenv
 create virtual enviroment env
 > python -m virtualenv env
@@ -13,3 +14,4 @@ go to your project folder
 > django-admin startproject conf .
 run the server
 > python manage.py runserver
+```
