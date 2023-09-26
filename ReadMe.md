@@ -10,7 +10,7 @@ activate virtual enviroment env for MacOS
 install Django and psycopg2
 > pip install Django
 > pip install psycopg2
-go to your project folder
+go to your project folder and create a new Django project
 > django-admin startproject conf .
 run the server
 > python manage.py runserver
