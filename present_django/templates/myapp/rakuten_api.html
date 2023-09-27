@@ -1,40 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Rakuten Ichiba API</title>
-    <style>
-        /* 样式化JSON */
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            white-space: pre-wrap;
-        }
-    </style>
 </head>
 <body>
-    <h1>Rakuten Ichiba API Results</h1>
+    <h1>Rakuten Ichiba API Search</h1>
+    <form method="get" action="">
+        <label for="keyword">Keyword:</label>
+        <input type="text" name="keyword" id="keyword" required>
 
-    <div id="api-results">
-        <pre id="json-data">Loading...</pre>
-    </div>
+        <!-- Add a drop-down menu -->
+        <label for="sort">Sort By Time:</label>
+        <select name="sort" id="sort">
+            <option value="standard">Standard</option>
+            <option value="+updateTimestamp">New</option>
+            <option value="-updateTimestamp">Old</option>
+        </select>
+
+        <button type="submit">Search</button>
+        <button type="button" id="redButton" style="background-color: red; color: white;">Red Button</button>
+        <button type="button" id="blueButton" style="background-color: blue; color: white;">Blue Button</button>
+    </form>
+
+    {% if items %}
+        <h2>Search Results</h2>
+        <ul>
+            {% for item in items %}
+                <li>{{ item.name }} - ¥{{ item.price }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
     <script>
-        fetch('/rakuten-api/')
-            .then(response => response.json())
-            .then(data => {
-                const resultsDiv = document.getElementById('api-results');
-                const jsonData = JSON.stringify(data, null, 4); // 格式化JSON数据
-                // 解析JSON数据并将原始Unicode字符呈现在HTML元素中
-                const parsedData = JSON.parse(jsonData);
-                const jsonPre = document.getElementById('json-data');
-                // 使用safe过滤器输出原始HTML内容
-                jsonPre.innerHTML = '<code>' + {{ formatted_data|safe }} + '</code>';
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        // JavaScript to set keyword and trigger form submission
+        document.getElementById("redButton").addEventListener("click", function() {
+            document.getElementById("keyword").value = "東京 お土産";
+            document.querySelector("form").submit();
+        });
+
+        document.getElementById("blueButton").addEventListener("click", function() {
+            document.getElementById("keyword").value = "京都 お土産";
+            document.querySelector("form").submit();
+        });
     </script>
 </body>
 </html>
