@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rakuten Ichiba API</title>
+</head>
+<body>
+    <h1>Rakuten Ichiba API Results</h1>
+
+    <div id="api-results">
+        <p>Loading...</p>
+    </div>
+
+    <script>
+        fetch('/rakuten-api/')
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('api-results');
+                resultsDiv.innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    </script>
+</body>
+</html>
