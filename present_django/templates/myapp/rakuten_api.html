@@ -2,12 +2,22 @@
 <html>
 <head>
     <title>Rakuten Ichiba API</title>
+    <style>
+        /* 样式化JSON */
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
     <h1>Rakuten Ichiba API Results</h1>
 
     <div id="api-results">
-        <p>Loading...</p>
+        <pre id="json-data">Loading...</pre>
     </div>
 
     <script>
@@ -15,7 +25,12 @@
             .then(response => response.json())
             .then(data => {
                 const resultsDiv = document.getElementById('api-results');
-                resultsDiv.innerHTML = JSON.stringify(data, null, 2);
+                const jsonData = JSON.stringify(data, null, 4); // 格式化JSON数据
+                // 解析JSON数据并将原始Unicode字符呈现在HTML元素中
+                const parsedData = JSON.parse(jsonData);
+                const jsonPre = document.getElementById('json-data');
+                // 使用safe过滤器输出原始HTML内容
+                jsonPre.innerHTML = '<code>' + {{ formatted_data|safe }} + '</code>';
             })
             .catch(error => {
                 console.error('Error fetching data:', error);

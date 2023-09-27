@@ -4,6 +4,9 @@ from django.shortcuts import render
 
 import requests
 from django.http import JsonResponse
+import requests
+import json  # 导入json模块
+from django.shortcuts import render
 
 
 def rakuten_api(request):
@@ -25,7 +28,9 @@ def rakuten_api(request):
         if response.status_code == 200:
             # Return the API response as JSON to the client
             data = response.json()
-            return JsonResponse(data)
+            #return JsonResponse(data)
+            return JsonResponse(data=data, json_dumps_params={'ensure_ascii': False})
+
         else:
             return JsonResponse({'error': 'API request failed'}, status=response.status_code)
 
