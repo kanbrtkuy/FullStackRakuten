@@ -11,6 +11,7 @@ install Django and psycopg2
 > pip install Django
 > pip install psycopg2
 > pip install djangorestframework
+> pip install requests
 go to your project folder and create a new Django project
 > django-admin startproject conf .
 run the server
