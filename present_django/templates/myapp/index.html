@@ -1,0 +1,84 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Document</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <h1>Search</h1>-->
+<!--    <main>-->
+<!--        <div>-->
+<!--            <form method="post">-->
+<!--                {% csrf_token %} {{ form.as_p }}-->
+<!--                <input type="submit" value="Search" />-->
+<!--                <button id="search-button" style="background-color: red; color: white;">Search 東京お土産</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </main>-->
+<!--    &lt;!&ndash; 在 </body> 标签之前添加以下 JavaScript 代码 &ndash;&gt;-->
+<!--    <script>-->
+<!--        document.addEventListener("DOMContentLoaded", function () {-->
+<!--            const searchButton = document.getElementById("search-button");-->
+<!--            searchButton.addEventListener("click", function () {-->
+<!--                // 设置关键字为"東京お土産"-->
+<!--                const keywordInput = document.querySelector("input[name='title']");-->
+<!--                keywordInput.value = "東京お土産";-->
+
+<!--                // 提交表单，触发搜索-->
+<!--                const searchForm = document.querySelector("form");-->
+<!--                searchForm.submit();-->
+<!--            });-->
+<!--        });-->
+<!--    </script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <main>
+        <div>
+            <form method="post">
+                {% csrf_token %} {{ form.as_p }}
+                <input type="submit" value="Search" />
+                <button id="search-button" style="background-color: red; color: white;">Search 東京お土産</button>
+
+                <!-- 新增的下拉菜单 -->
+                <label for="sort">Sort:</label>
+                <select name="sort" id="sort">
+                    <option value="+updateTimestamp">New</option>
+                    <option value="-updateTimestamp">Old</option>
+                </select>
+            </form>
+        </div>
+    </main>
+    <!-- 在 </body> 标签之前添加以下 JavaScript 代码 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchButton = document.getElementById("search-button");
+            const sortSelect = document.getElementById("sort");
+
+            searchButton.addEventListener("click", function () {
+                // 设置关键字
+                const keywordInput = document.querySelector("input[name='title']");
+                keywordInput.value = "東京お土産";
+
+                // 设置排序方式
+                const sortInput = document.querySelector("input[name='sort']");
+                sortInput.value = sortSelect.value;
+
+                // 提交表单，触发搜索
+                const searchForm = document.querySelector("form");
+                searchForm.submit();
+            });
+        });
+    </script>
+</body>
+</html>

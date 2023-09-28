@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Result</h1>
+    <p>Key words: {{ keyword }}</p>
+    {% for item in item_data %}
+        <p>{{item.title}}</p>
+        <p>¥ {{item.price}}</p>
+        <image src="{{item.image}}">
+<!--            <p>{{item.image}}</p>-->
+    {% empty %}
+<!--    <p>奩摉偡傞傕偺偼偁傝傑偣傫</p>-->
+    {% endfor%}
+</body>
+</html>
